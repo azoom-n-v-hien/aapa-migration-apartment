@@ -10,7 +10,7 @@
   "author": "Azoom",
   "license": "MIT",
   "dependencies": {
-    "common": "1.0.0"
+    "server": "1.0.0"
   },
   "scripts": {
     "test": "lerna run test --since",
@@ -20,7 +20,14 @@
     "pkg:create": "cd packages/server && ../node_modules/.bin/vue create",
     "pkg:clean": "yarn lerna clean",
     "pkg:bootstrap": "yarn lerna bootstrap",
-    "pkg:publish": "yarn lerna publish --registry https://npm.pkg.github.com/ -m \":bookmark: Publish\""
+    "pkg:publish": "yarn lerna publish --registry https://npm.pkg.github.com/ -m \":bookmark: Publish\"",
+    "start": "env $(grep -v '^#' .env) node --experimental-specifier-resolution=node --experimental-modules --experimental-json-modules --loader  index.js",
+    "dev": "env $(grep -v '^#' .env) nodemon index.js --exec 'yarn lint && node --experimental-specifier-resolution=node --experimental-modules --experimental-json-modules --loader ./node_modules/@azoom/node-util/module-alias/loader.js'",
+    "dcc": "docker-compose -f ./development/development/docker-compose.yaml",
+    "setup": "yarn setup:env && yarn setup:mock-data && yarn",
+    "setup:env": "cp .env.template .env",
+    "staging:clean": "git fetch origin --prune 'refs/tags/*:refs/tags/*' && git push origin --delete $(git tag -l 'staging-*') || true && git fetch origin --prune 'refs/tags/*:refs/tags/*'",
+    "staging:deploy": "yarn staging:clean && TAG=`echo staging-$(date +%Y%m%d-%H%M%S)` && git tag $TAG && git push origin $TAG"
   },
   "devDependencies": {
     "lerna": "^4.0.0"

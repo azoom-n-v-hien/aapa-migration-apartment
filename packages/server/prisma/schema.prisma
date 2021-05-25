@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator docs {
+  provider = "node node_modules/prisma-docs-generator"
+  output = "../docs/db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Apartment {
+  id                        Int             @id @default(autoincrement())
+  name                      String          @db.VarChar(255)
+  address                   String?         @db.VarChar(255)
+  /// city id from carparking database, location_city table
+  cityId                    Int?            @map("city_id")
+  completionDate            DateTime?       @db.Date() @map("completion_date")
+  roomNum                   Int?            @map("room_num")
+  meetingDate               String?         @db.VarChar(255) @map("meeting_date")
+  maintenanceDate           String?         @db.VarChar(255) @map("maintenance_date")
+  hasParking                Boolean?        @map("has_parking")
+  /// Parking type.<br>
+  /// - 1: 平面 <br>
+  /// - 2: 機械 <br>
+  /// - 3: 両方
+  parkingType               Int?            @map("parking_type")
+  parkingNum                Int?            @map("parking_num")
+  parkingEmptyNum           Int?            @map("parking_empty_num")
+  url                       String?         @db.VarChar(255)
+  /// Management type. <br>
+  /// - 1: 委託 <br>
+  /// - 2: 自主管理
+  managementType            Int?            @map("management_type")
+  /// company id from bengal strapi database, company table
+  managementCompanyId       Int?            @map("management_company_id")
+  managementCompanyBranch   String?         @db.VarChar(255) @map("management_company_branch")
+  /// staff (person) id from bengal strapi database, person table
+  managementCompanyStaffId  Int?            @map("management_company_staff_id")
+  /// Apartment status <br>
+  /// - 1: 空き <br>
+  /// - 2: 満車 <br>
+  /// - 3: 受託 <br>
+  /// - 4: 提案 <br>
+  /// - 5: 他社 <br>
+  /// - 6: コインパ <br>
+  /// - 7: 仲介 <br>
+  /// - 8: 施工前
+  status                    Int?
+  /// Azoom staff id from azoom-org 
+  staffId                   Int?            @map("staff_id")
+  canProposeParking         Boolean?        @map("can_propose_parking")
+  /// Proposal type <br>
+  /// 1: Push <br>
+  /// 2: Pull
+  proposalType              Int?            @map("proposal_type")
+  memo                      String?         @db.Text
+  approachDate              DateTime?       @db.Date() @map("approach_date")
+  confirmDate               DateTime?       @db.Date() @map("confirm_date")
+  createdDatetime           DateTime        @default(now()) @map("created_datetime")
+  updatedDatetime           DateTime?       @updatedAt @default(now()) @map("updated_datetime")
+  
+  @@map("apartment")
+}
