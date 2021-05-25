@@ -1325,6 +1325,11 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
+common@1.0.0:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/common/-/common-0.2.4.tgz#ad3c683c4f398bec692a6aea4df6878224029cb1"
+  integrity sha1-rTxoPE85i+xpKmrqTfaHgiQCnLE=
+
 compare-func@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/compare-func/-/compare-func-2.0.0.tgz#fb65e75edbddfd2e568554e8b5b05fff7a51fcb3"

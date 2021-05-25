@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:azoom-n-v-hien/aapa-migration-apartment.git",
-  "author": "Nguyen Van Hien <n.v.hien@azoom.jp>",
+  "author": "Azoom",
   "license": "MIT",
   "dependencies": {
     "common": "1.0.0"
@@ -15,7 +15,12 @@
   "scripts": {
     "test": "lerna run test --since",
     "new-version": "lerna version --conventional-commits --yes",
-    "diff": "lerna diff"
+    "lerna": "lerna",
+    "sample:create": "cd packages/common && ../node_modules/.bin/vue create",
+    "pkg:create": "cd packages/server && ../node_modules/.bin/vue create",
+    "pkg:clean": "yarn lerna clean",
+    "pkg:bootstrap": "yarn lerna bootstrap",
+    "pkg:publish": "yarn lerna publish --registry https://npm.pkg.github.com/ -m \":bookmark: Publish\""
   },
   "devDependencies": {
     "lerna": "^4.0.0"
