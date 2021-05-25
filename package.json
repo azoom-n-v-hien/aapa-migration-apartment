@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "name": "aapa-migration-apartment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:azoom-n-v-hien/aapa-migration-apartment.git",
+  "author": "Nguyen Van Hien <n.v.hien@azoom.jp>",
+  "license": "MIT",
+  "dependencies": {
+    "common": "1.0.0"
+  },
+  "scripts": {
+    "test": "lerna run test --since",
+    "new-version": "lerna version --conventional-commits --yes",
+    "diff": "lerna diff"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
