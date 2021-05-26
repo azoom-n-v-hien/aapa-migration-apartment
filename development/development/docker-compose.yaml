@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  aapa-apartment-mysql:
+    image: mysql:8
+    ports:
+      - "33066:3306"
+    volumes:
+      - ./mysql/.data:/var/lib/mysql
+      - ./mysql/initdb:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_DATABASE: apartment
+      MYSQL_ROOT_PASSWORD: apartment
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default_authentication_plugin=mysql_native_password
+    cap_add:
+      - SYS_NICE
+    networks:
+      - aapa-apartment-network
+    container_name: aapa-apartment-mysql
+
+networks:
+  aapa-apartment-network:

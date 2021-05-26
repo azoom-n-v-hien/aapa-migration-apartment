@@ -1,1 +1,4 @@
+.idea
+deployment/development/mysql/.data/*
 node_modules
+.env

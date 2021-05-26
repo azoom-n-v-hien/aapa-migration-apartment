@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `apartment` ADD COLUMN     `created_datetime` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    ADD COLUMN     `updated_datetime` DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3);
